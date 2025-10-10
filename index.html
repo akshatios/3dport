@@ -15,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <title>Akshat - Enhanced 3D Portfolio</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
@@ -173,6 +172,15 @@
             color: var(--primary-color);
             transform: rotateX(10deg) rotateY(-5deg) translateZ(15px) scale(1.05);
             text-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav__link i {
+            font-size: 1rem;
+            transition: all 0.5s ease;
+        }
+
+        .nav__link:hover i {
+            transform: translateZ(10px) scale(1.2);
         }
 
         .theme-toggle {
@@ -909,21 +917,59 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             position: relative;
             z-index: 2;
         }
 
         .project-card {
             background: var(--bg-card);
-            border-radius: 25px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-md);
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             transform-style: preserve-3d;
             cursor: pointer;
+            animation: projectFloat 6s ease-in-out infinite;
+        }
+
+        .project-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .project-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .project-card:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        .project-card:nth-child(5) {
+            animation-delay: 2s;
+        }
+
+        .project-card:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+
+        .project-card:nth-child(7) {
+            animation-delay: 3s;
+        }
+
+        .project-card:nth-child(8) {
+            animation-delay: 3.5s;
+        }
+
+        @keyframes projectFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         .project-card::before {
@@ -949,17 +995,18 @@
                 0 40px 100px rgba(59, 130, 246, 0.3),
                 0 20px 50px rgba(139, 92, 246, 0.2),
                 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: none;
         }
 
         .project-image {
             width: 100%;
-            height: 220px;
+            height: 160px;
             background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             position: relative;
             overflow: hidden;
             transition: all 0.6s ease;
@@ -995,7 +1042,7 @@
         }
 
         .project-content {
-            padding: 2.5rem;
+            padding: 1.5rem;
             position: relative;
             z-index: 2;
             transition: all 0.5s ease;
@@ -1021,9 +1068,9 @@
         }
 
         .project-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             transition: all 0.5s ease;
         }
 
@@ -1033,8 +1080,9 @@
 
         .project-description {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
             transition: all 0.5s ease;
         }
 
@@ -1395,6 +1443,20 @@
             }
         }
 
+        /* Floating Animation */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px) rotateZ(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateZ(2deg);
+            }
+        }
+
         /* Mobile Responsive Adjustments */
         @media (max-width: 968px) {
             .nav__menu {
@@ -1466,6 +1528,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
             /* Reduce 3D effects on mobile for performance */
             .interactive-3d:hover,
             .btn:hover,
@@ -1484,10 +1550,6 @@
 
             .section-title {
                 font-size: 2rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
             }
 
             .hero__blob {
@@ -1573,20 +1635,6 @@
             opacity: 1;
             transform: translateX(0) rotateY(0deg);
         }
-
-        /* Floating Animation */
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0%, 100% {
-                transform: translateY(0px) rotateZ(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotateZ(2deg);
-            }
-        }
     </style>
 </head>
 <body>
@@ -1606,6 +1654,9 @@
                 <a href="#skills" class="nav__link">Skills</a>
                 <a href="#projects" class="nav__link">Projects</a>
                 <a href="#contact" class="nav__link">Contact</a>
+                <a href="assets/docs/Akshat_resume.PDF" class="nav__link" download="Akshat_Jain_Resume.pdf">
+                    <i class="ri-file-download-line"></i> Resume
+                </a>
             </div>
 
             <div style="display: flex; align-items: center; gap: 1rem;">
