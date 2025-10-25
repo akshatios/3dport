@@ -1,4 +1,4 @@
-// COMPLETE JAVASCRIPT CODE
+// COMPLETE JAVASCRIPT CODE A
 
 // 1. LOADING SCREEN - Fixed with timeout
 setTimeout(() => {
@@ -252,7 +252,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 13. CONTACT FORM SUBMISSION
+// 13. CONTACT FORM SUBMISSION WITH EMAILJS
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -262,12 +262,30 @@ if (contactForm) {
         submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Sending...';
         submitBtn.disabled = true;
         
-        setTimeout(() => {
-            alert('✅ Message sent successfully! I will get back to you soon.');
-            contactForm.reset();
+        // Check if EmailJS is loaded
+        if (typeof emailjs === 'undefined') {
+            alert('❌ EmailJS not loaded. Please refresh the page.');
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-        }, 2000);
+            return;
+        }
+        
+        // Initialize and send email
+        emailjs.init('AUKPUbYlCpQv9zjQY');
+        emailjs.sendForm('service_sx6jnrn', 'template_csvh6gt', contactForm)
+            .then((response) => {
+                console.log('SUCCESS:', response.status, response.text);
+                alert('✅ Message sent successfully! I will get back to you soon.');
+                contactForm.reset();
+            })
+            .catch((error) => {
+                console.error('FULL ERROR:', error);
+                alert(`❌ Error: ${error.text || error.message || 'Please check console for details'}`);
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
     });
 }
 
