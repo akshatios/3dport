@@ -241,8 +241,11 @@ if (scrollTopBtn) {
 // 12. SMOOTH SCROLLING FOR LINKS
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || !href.startsWith('#')) return;
+        
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
             const headerOffset = 80;
             const elementPosition = target.getBoundingClientRect().top;
