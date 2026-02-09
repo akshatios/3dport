@@ -30,6 +30,22 @@ body {
     cursor: none;
 }
 
+.avatar-img {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit:fill;
+    object-position: center;
+}
+
+
+.avatar-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
 .cursor {
     position: fixed;
     width: 20px;
@@ -468,7 +484,11 @@ nav {
     border-radius: 50%;
     animation: rotate 10s linear infinite;
     opacity: 0.5;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;     */
 }
+
 
 .hologram-ring:nth-child(2) {
     animation-delay: -2s;
@@ -488,7 +508,6 @@ nav {
 
 .avatar-container {
     position: absolute;
-    inset: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -502,13 +521,6 @@ nav {
     50% { transform: translateY(-20px); }
 }
 
-.avatar-img {
-    width: 250px;
-    height: 250px;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    filter: brightness(1.2) contrast(1.1) saturate(1.2);
-    box-shadow: 0 0 50px var(--primary);
-}
 
 .stats {
     padding: 5rem 5%;

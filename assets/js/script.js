@@ -262,25 +262,22 @@ if (contactForm) {
         submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Sending...';
         submitBtn.disabled = true;
         
-        // Check if EmailJS is loaded
         if (typeof emailjs === 'undefined') {
-            alert('❌ EmailJS not loaded. Please refresh the page.');
+            alert('❌ EmailJS not loaded');
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             return;
         }
         
-        // Initialize and send email
         emailjs.init('AUKPUbYlCpQv9zjQY');
-        emailjs.sendForm('service_sx6jnrn', 'template_csvh6gt', contactForm)
-            .then((response) => {
-                console.log('SUCCESS:', response.status, response.text);
-                alert('✅ Message sent successfully! I will get back to you soon.');
+        emailjs.sendForm('service_f3ld74f', 'template_csvh6gt', contactForm)
+            .then(() => {
+                alert('✅ Message sent successfully!');
                 contactForm.reset();
             })
-            .catch((error) => {
-                console.error('FULL ERROR:', error);
-                alert(`❌ Error: ${error.text || error.message || 'Please check console for details'}`);
+            .catch(err => {
+                console.error('Error:', err);
+                alert('❌ Error: ' + (err.text || err.message || 'Failed'));
             })
             .finally(() => {
                 submitBtn.innerHTML = originalText;
